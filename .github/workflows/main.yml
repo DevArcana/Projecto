@@ -30,8 +30,7 @@ jobs:
 
       - name: npm ci and npm run build
         run: |
-          ls -l
-          cd src/Project/ClientApp
+          cd src/Projecto/ClientApp
           npm ci
           npm run build:ci
       
