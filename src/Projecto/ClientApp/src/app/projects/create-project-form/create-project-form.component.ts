@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-create-project-form',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-project-form.component.scss']
 })
 export class CreateProjectFormComponent implements OnInit {
+  @Output() closeModal = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

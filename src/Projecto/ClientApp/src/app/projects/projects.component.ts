@@ -14,7 +14,11 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public toggleProjectCreationForm(): void {
-    this.isFormVisible = !this.isFormVisible;
+  public openProjectCreationForm(): void {
+    this.isFormVisible = true;
+  }
+
+  public closeProjectCreationForm(): void {
+    this.isFormVisible = false;
   }
 }
