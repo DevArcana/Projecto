@@ -5,10 +5,11 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { ProjectsNavbarComponent } from './projects-navbar/projects-navbar.component';
 
 
 @NgModule({
-  declarations: [ProjectsComponent, ProjectComponent, ProjectsListComponent],
+  declarations: [ProjectsComponent, ProjectComponent, ProjectsListComponent, ProjectsNavbarComponent],
   imports: [
     CommonModule,
     ProjectsRoutingModule
