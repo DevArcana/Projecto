@@ -4,3 +4,7 @@
 @import 'tailwindcss/utilities';
 
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  @apply bg-gray-300 h-screen w-screen;
+}
