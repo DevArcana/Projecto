@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-projects-navbar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects-navbar.component.scss']
 })
 export class ProjectsNavbarComponent implements OnInit {
+
+  @Output() createNewProject = new EventEmitter();
 
   constructor() { }
 

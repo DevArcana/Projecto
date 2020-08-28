@@ -7,10 +7,11 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { ProjectsNavbarComponent } from './projects-navbar/projects-navbar.component';
 import { NoProjectsFoundComponent } from './no-projects-found/no-projects-found.component';
+import { CreateProjectFormComponent } from './create-project-form/create-project-form.component';
 
 
 @NgModule({
-  declarations: [ProjectsComponent, ProjectComponent, ProjectsListComponent, ProjectsNavbarComponent, NoProjectsFoundComponent],
+  declarations: [ProjectsComponent, ProjectComponent, ProjectsListComponent, ProjectsNavbarComponent, NoProjectsFoundComponent, CreateProjectFormComponent],
   imports: [
     CommonModule,
     ProjectsRoutingModule

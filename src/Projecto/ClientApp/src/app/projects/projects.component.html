@@ -1,5 +1,9 @@
-<app-projects-navbar></app-projects-navbar>
+<div>
+  <app-projects-navbar (createNewProject)="toggleProjectCreationForm()"></app-projects-navbar>
 
-<div class="container mx-auto">
-  <app-projects-list></app-projects-list>
+  <div class="container mx-auto">
+    <app-projects-list></app-projects-list>
+  </div>
 </div>
+
+<app-create-project-form [hidden]="!isFormVisible"></app-create-project-form>

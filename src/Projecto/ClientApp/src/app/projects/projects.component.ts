@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
+  isFormVisible = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  public toggleProjectCreationForm(): void {
+    this.isFormVisible = !this.isFormVisible;
+  }
 }
