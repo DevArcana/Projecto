@@ -1,3 +1,4 @@
+import { LayoutModule } from './../layout/layout.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,10 +12,18 @@ import { CreateProjectFormComponent } from './create-project-form/create-project
 
 
 @NgModule({
-  declarations: [ProjectsComponent, ProjectComponent, ProjectsListComponent, ProjectsNavbarComponent, NoProjectsFoundComponent, CreateProjectFormComponent],
+  declarations: [
+    ProjectsComponent,
+    ProjectComponent,
+    ProjectsListComponent,
+    ProjectsNavbarComponent,
+    NoProjectsFoundComponent,
+    CreateProjectFormComponent
+  ],
   imports: [
     CommonModule,
-    ProjectsRoutingModule
+    ProjectsRoutingModule,
+    LayoutModule
   ]
 })
 export class ProjectsModule { }

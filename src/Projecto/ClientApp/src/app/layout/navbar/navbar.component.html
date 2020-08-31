@@ -6,10 +6,12 @@
     </div>
 
     <div class="flex-1 font-medium text-gray-700 text-center">
-      Center
+      <ng-content select=".center"></ng-content>
     </div>
 
     <div class="flex-1 flex justify-end">
+      <ng-content></ng-content>
+
       <button (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</button>
       <button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
     </div>

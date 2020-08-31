@@ -1,21 +1,13 @@
-<header class="bg-white p-2 shadow-md">
-  <div class="flex items-center">
-    <div class="flex-1 flex items-center">
-      <img class="rounded h-8" src="assets/logo.svg" alt="project logo">
-      <div class="text-gray-600 font-semibold mx-3">Dev Mountain</div>
-    </div>
-
-    <div class="flex-1 font-medium text-gray-700 text-center">
-      Projects
-    </div>
-
-    <div class="flex-1 flex justify-end">
-      <button type="button" class="block text-gray-600 hover:text-gray-900 focus:text-gray-900 focus:outline-none" (click)="createNewProject.emit()">
-        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      </button>
-    </div>
+<app-navbar>
+  <div class="center">
+    Projects
   </div>
-</header>
+
+  <button type="button" class="block text-gray-600 hover:text-gray-900 focus:text-gray-900 focus:outline-none"
+    (click)="createNewProject.emit()">
+    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  </button>
+</app-navbar>
