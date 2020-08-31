@@ -8,5 +8,37 @@
 
 .modal {
   z-index: 100;
-  @apply absolute bg-white rounded shadow-lg flex items-center justify-center p-3;
+  @apply absolute flex items-center justify-center;
+}
+
+:hover.button {
+  @apply bg-blue-700;
+}
+
+:focus.button {
+  @apply shadow-outline outline-none;
+}
+
+.button {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+:hover.cancel {
+  @apply bg-red-700
+}
+
+.cancel {
+  @apply  bg-red-500;
+}
+
+:focus.form-input {
+  @apply outline-none shadow-outline;
+}
+
+.form-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+.invalid {
+  @apply border-red-500;
 }
