@@ -64,18 +64,26 @@ namespace Projecto.Persistance
                 .GetEntityTypes()
                 .Where(entity => typeof(ICreated).IsAssignableFrom(entity.ClrType)))
             {
-                entityType.FindProperty(nameof(ICreated.CreatedUtc)).IsNullable = false;
-                entityType.FindProperty(nameof(ICreated.CreatedBy)).IsNullable = false;
+                var createdUtc = entityType.FindProperty(nameof(ICreated.CreatedUtc));
+                createdUtc.IsNullable = false;
+                createdUtc.SetColumnType("datetime2");
+
+                var createdBy = entityType.FindProperty(nameof(ICreated.CreatedBy));
+                createdBy.IsNullable = false;
+                createdBy.SetMaxLength(256);
             }
             
             foreach (var entityType in builder.Model
                 .GetEntityTypes()
                 .Where(entity => typeof(IUpdated).IsAssignableFrom(entity.ClrType)))
             {
-                var prop = entityType.FindProperty(nameof(ICreated.CreatedUtc));
+                var updatedUtc = entityType.FindProperty(nameof(IUpdated.UpdatedUtc));
 
-                prop.IsConcurrencyToken = true;
-                prop.SetColumnType("datetime2");
+                updatedUtc.IsConcurrencyToken = true;
+                updatedUtc.SetColumnType("datetime2");
+                
+                var updatedBy = entityType.FindProperty(nameof(IUpdated.UpdatedBy));
+                updatedBy.SetMaxLength(256);
             }
         }
     }
