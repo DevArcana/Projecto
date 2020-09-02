@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Projecto.Infrastructure;
+using Serilog;
 
 namespace Projecto
 {
@@ -53,17 +54,14 @@ namespace Projecto
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSerilogRequestLogging();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
             
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
@@ -74,6 +72,11 @@ namespace Projecto
                 {
                     spa.UseAngularCliServer("start");
                 }
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }
