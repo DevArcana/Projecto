@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Projecto.Domain.Entities;
 
-namespace Projecto.Persistance.Configurations
+namespace Projecto.Infrastructure.Persistance.Configurations
 {
     public class ProjectConfiguration : IEntityTypeConfiguration<Project>
     {

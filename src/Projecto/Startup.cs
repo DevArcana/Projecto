@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Projecto.Persistance;
+using Projecto.Infrastructure;
 
 namespace Projecto
 {
@@ -24,7 +24,7 @@ namespace Projecto
             
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/dist/client-app");
 
-            services.AddPersistance(Configuration);
+            services.AddInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

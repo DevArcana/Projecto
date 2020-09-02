@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Projecto.Domain.Entities;
 using Projecto.Domain.Interfaces;
 
-namespace Projecto.Persistance
+namespace Projecto.Infrastructure.Persistance
 {
     public class AppDbContext : DbContext
     {

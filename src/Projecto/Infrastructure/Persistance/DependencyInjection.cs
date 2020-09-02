@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 
-namespace Projecto.Persistance
+namespace Projecto.Infrastructure.Persistance
 {
     public static class DependencyInjection
     {
