@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace Projecto.Persistance
 {
@@ -10,14 +12,36 @@ namespace Projecto.Persistance
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseNpgsql(GetConnectionString(configuration));
+                options.UseNpgsql(GetHerokuDbConnection() ?? configuration.GetConnectionString("Database"));
             });
+            
+            using var scope = services.BuildServiceProvider().CreateScope();
+            var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+            dbContext.Database.Migrate();
         }
 
-        private static string GetConnectionString(IConfiguration configuration)
+        private static string? GetHerokuDbConnection()
         {
-            // Support Heroku's environment variables
-            return configuration.GetConnectionString("Database");
+            var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            if (databaseUrl == null)
+            {
+                return null;
+            }
+            
+            var databaseUri = new Uri(databaseUrl);
+            var userInfo = databaseUri.UserInfo.Split(':');
+
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = databaseUri.Host,
+                Port = databaseUri.Port,
+                Username = userInfo[0],
+                Password = userInfo[1],
+                Database = databaseUri.LocalPath.TrimStart('/')
+            };
+
+            return builder.ToString();
         }
     }
 }
