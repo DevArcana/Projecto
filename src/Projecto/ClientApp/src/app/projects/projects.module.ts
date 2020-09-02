@@ -10,6 +10,7 @@ import { ProjectsNavbarComponent } from './components/projects-navbar/projects-n
 import { NoProjectsFoundComponent } from './components/projects-list/no-projects-found/no-projects-found.component';
 import { CreateProjectFormComponent } from './components/create-project-form/create-project-form.component';
 import { AddProjectButtonComponent } from './components/add-project-button/add-project-button.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddProjectButtonComponent } from './components/add-project-button/add-p
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ]
 })
 export class ProjectsModule { }

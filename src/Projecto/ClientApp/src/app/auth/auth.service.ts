@@ -19,10 +19,14 @@ export class AuthService {
   private static DOMAIN = 'devmountain.eu.auth0.com';
   private static CLIENT_ID = '3YlSLKTgSvY17asyYZaip3CeoylaYjeY';
 
+  private static AUDIENCE = 'http://projecto-app.herokuapp.com/';
+  private static SCOPE = 'api';
+
   auth0Client$ = (from(
     createAuth0Client({
       domain: AuthService.DOMAIN,
       client_id: AuthService.CLIENT_ID,
+      audience: AuthService.AUDIENCE,
       redirect_uri: `${window.location.origin}`,
     })
   ) as Observable<Auth0Client>).pipe(
@@ -130,5 +134,11 @@ export class AuthService {
         returnTo: `${window.location.origin}`,
       });
     });
+  }
+
+  getTokenSilently$(options?: any): Observable<string> {
+    return this.auth0Client$.pipe(
+      concatMap((client: Auth0Client) => from(client.getTokenSilently(options)))
+    );
   }
 }

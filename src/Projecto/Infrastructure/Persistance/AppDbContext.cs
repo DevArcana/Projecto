@@ -66,7 +66,7 @@ namespace Projecto.Infrastructure.Persistance
             {
                 var createdUtc = entityType.FindProperty(nameof(ICreated.CreatedUtc));
                 createdUtc.IsNullable = false;
-                createdUtc.SetColumnType("datetime2");
+                createdUtc.SetColumnType("timestamp");
 
                 var createdBy = entityType.FindProperty(nameof(ICreated.CreatedBy));
                 createdBy.IsNullable = false;
@@ -80,7 +80,7 @@ namespace Projecto.Infrastructure.Persistance
                 var updatedUtc = entityType.FindProperty(nameof(IUpdated.UpdatedUtc));
 
                 updatedUtc.IsConcurrencyToken = true;
-                updatedUtc.SetColumnType("datetime2");
+                updatedUtc.SetColumnType("timestamp");
                 
                 var updatedBy = entityType.FindProperty(nameof(IUpdated.UpdatedBy));
                 updatedBy.SetMaxLength(256);

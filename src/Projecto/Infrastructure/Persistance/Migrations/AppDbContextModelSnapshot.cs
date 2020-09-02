@@ -31,7 +31,7 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                         .HasMaxLength(256);
 
                     b.Property<DateTime>("CreatedUtc")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Description")
                         .HasColumnType("character varying(500)")
@@ -53,7 +53,7 @@ namespace Projecto.Infrastructure.Persistance.Migrations
 
                     b.Property<DateTime?>("UpdatedUtc")
                         .IsConcurrencyToken()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp");
 
                     b.HasKey("Id");
 

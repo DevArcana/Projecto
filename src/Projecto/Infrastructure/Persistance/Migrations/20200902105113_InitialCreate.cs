@@ -14,9 +14,9 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CreatedUtc = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedUtc = table.Column<DateTime>(type: "timestamp", nullable: false),
                     CreatedBy = table.Column<string>(maxLength: 256, nullable: false),
-                    UpdatedUtc = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedUtc = table.Column<DateTime>(type: "timestamp", nullable: true),
                     UpdatedBy = table.Column<string>(maxLength: 256, nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Slug = table.Column<string>(maxLength: 100, nullable: false),

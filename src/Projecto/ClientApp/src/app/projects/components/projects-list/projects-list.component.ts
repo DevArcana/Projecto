@@ -1,5 +1,6 @@
 import { Project } from './../../models/Project';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-projects-list',
@@ -12,9 +13,12 @@ export class ProjectsListComponent implements OnInit {
     new Project('Project 1', 'project-1', 'Project 1\'s description. It is a very nice project indeed.')
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get('weatherforecast').subscribe(x => {
+
+    });
   }
 
 }
