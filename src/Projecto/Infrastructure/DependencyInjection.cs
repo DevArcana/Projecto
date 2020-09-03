@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Projecto.Infrastructure.Interfaces;
 using Projecto.Infrastructure.Persistance;
+using Projecto.Infrastructure.Services;
 
 namespace Projecto.Infrastructure
 {
@@ -11,6 +13,8 @@ namespace Projecto.Infrastructure
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddPersistance(configuration);
+
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

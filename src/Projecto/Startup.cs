@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Projecto.Domain.Interfaces;
+using Projecto.Domain.Services;
 using Projecto.Infrastructure;
 using Serilog;
 
@@ -44,6 +46,8 @@ namespace Projecto
             });
             
             services.AddInfrastructure(Configuration);
+
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +67,11 @@ namespace Projecto
             app.UseAuthentication();
             app.UseAuthorization();
             
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+            
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
@@ -72,11 +81,6 @@ namespace Projecto
                 {
                     spa.UseAngularCliServer("start");
                 }
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
             });
         }
     }
