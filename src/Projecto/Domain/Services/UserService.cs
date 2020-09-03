@@ -1,19 +1,49 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Projecto.Domain.Entities;
 using Projecto.Domain.Interfaces;
+using Projecto.Infrastructure.Persistance;
 
 namespace Projecto.Domain.Services
 {
     public class UserService : IUserService
     {
-        public Task<User> GetUserByEmailAsync(string email)
+        private readonly AppDbContext _context;
+
+        public UserService(AppDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        public Task<User> CreateUserAsync(string email, string displayName)
+        public Task<User?> GetUserByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            return _context.Users.FirstOrDefaultAsync(x => x.PrimaryEmail == email, cancellationToken)!;
+        }
+
+        public async Task<User?> CreateUserAsync(string email, string displayName, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var user = new User()
+                {
+                    CreatedUtc = DateTime.UtcNow,
+                    CreatedBy = "Auth0",
+                    PrimaryEmail = email,
+                    DisplayName = displayName
+                };
+
+                _context.Add(user);
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return user;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

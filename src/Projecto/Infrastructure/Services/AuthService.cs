@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
@@ -25,12 +26,12 @@ namespace Projecto.Infrastructure.Services
             _configuration = configuration;
         }
 
-        public async Task<UserAuthModel> GetUser(HttpContext context)
+        public async Task<UserAuthModel> GetUserAsync(HttpContext context, CancellationToken cancellationToken)
         {
             var token = context.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.First();
             var response = await _configuration.GetSection("Auth0")["Authority"]
                 .AppendPathSegment("userinfo")
-                .WithHeader("Authorization", token).GetJsonAsync();
+                .WithHeader("Authorization", token).GetJsonAsync(cancellationToken);
 
             var sub = ((string) response.sub).Split('|');
             var name = (string) response.name;
