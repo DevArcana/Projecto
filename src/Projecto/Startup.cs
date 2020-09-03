@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Projecto.Domain.Interfaces;
 using Projecto.Domain.Services;
 using Projecto.Infrastructure;
+using Projecto.Infrastructure.Auth;
 using Serilog;
 
 namespace Projecto
@@ -66,6 +67,8 @@ namespace Projecto
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<EnsureUserCreatedMiddleware>();
             
             app.UseEndpoints(endpoints =>
             {
