@@ -68,8 +68,6 @@ namespace Projecto
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseMiddleware<EnsureUserCreatedMiddleware>();
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

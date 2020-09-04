@@ -23,7 +23,7 @@ namespace Projecto.Infrastructure.Behaviours
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var user = await _authService.GetUserAsync(_httpContextAccessor.HttpContext, cancellationToken);
-            await _userContext.SetUserFromEmail(user.Email, cancellationToken);
+            await _userContext.SetUserFromAuthModel(user, cancellationToken);
             return await next();
         }
     }
