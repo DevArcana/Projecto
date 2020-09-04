@@ -16,7 +16,7 @@ export class ProjectsListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('weatherforecast').subscribe(x => {
+    this.http.get('api/projects').subscribe(x => {
 
     });
   }
