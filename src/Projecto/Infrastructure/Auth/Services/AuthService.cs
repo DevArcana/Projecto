@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Projecto.Infrastructure.Interfaces;
 
@@ -20,30 +21,37 @@ namespace Projecto.Infrastructure.Services
     public class AuthService : IAuthService
     {
         private readonly IConfiguration _configuration;
+        private readonly IMemoryCache _memoryCache;
 
-        public AuthService(IConfiguration configuration)
+        public AuthService(IConfiguration configuration, IMemoryCache memoryCache)
         {
             _configuration = configuration;
+            _memoryCache = memoryCache;
         }
 
-        public async Task<UserAuthModel> GetUserAsync(HttpContext context, CancellationToken cancellationToken)
+        public Task<UserAuthModel> GetUserAsync(HttpContext context, CancellationToken cancellationToken)
         {
             var token = context.Request.Headers.FirstOrDefault(x => x.Key == "Authorization").Value.First();
-            var response = await _configuration.GetSection("Auth0")["Authority"]
-                .AppendPathSegment("userinfo")
-                .WithHeader("Authorization", token).GetJsonAsync(cancellationToken);
 
-            var sub = ((string) response.sub).Split('|');
-            var name = (string) response.name;
-            var email = (string) response.email;
-
-            return new UserAuthModel()
+            return _memoryCache.GetOrCreateAsync(token, async entry =>
             {
-                Provider = sub[0],
-                Identifier = sub[1],
-                Name = name,
-                Email = email
-            };
+                var response = await _configuration.GetSection("Auth0")["Authority"]
+                    .AppendPathSegment("userinfo")
+                    .WithHeader("Authorization", token)
+                    .GetJsonAsync(cancellationToken);
+
+                var sub = ((string) response.sub).Split('|');
+                var name = (string) response.name;
+                var email = (string) response.email;
+
+                return new UserAuthModel()
+                {
+                    Provider = sub[0],
+                    Identifier = sub[1],
+                    Name = name,
+                    Email = email
+                };
+            });
         }
     }
 }

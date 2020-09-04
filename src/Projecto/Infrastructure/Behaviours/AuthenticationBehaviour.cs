@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
 using Projecto.Infrastructure.Auth;
 using Projecto.Infrastructure.Interfaces;
 

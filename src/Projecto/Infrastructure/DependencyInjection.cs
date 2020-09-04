@@ -19,6 +19,7 @@ namespace Projecto.Infrastructure
             
             services.AddAutoMapper(typeof(Startup));
             services.AddPersistance(configuration);
+            services.AddMemoryCache();
 
             services.AddScoped<UserContext>();
             services.AddHttpContextAccessor();
