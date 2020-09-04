@@ -19,6 +19,8 @@ namespace Projecto.Infrastructure.Persistance.Configurations
                 .IsRequired()
                 .HasMaxLength(256)
                 .HasDefaultValue("Unknown User");
+
+            builder.HasMany<Project>().WithOne(x => x.Owner);
         }
     }
 }

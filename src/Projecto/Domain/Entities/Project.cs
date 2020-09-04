@@ -68,13 +68,16 @@ namespace Projecto.Domain.Entities
             }
         }
 
+        public User Owner { get; private set; } = null!;
+
         private Project()
         {
             // Needed by EF Core
         }
         
-        public Project(string name, string slug, string? description)
+        public Project(User owner, string name, string slug, string? description)
         {
+            Owner = owner;
             Name = name;
             Slug = slug;
             Description = description;

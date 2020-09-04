@@ -26,11 +26,6 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
                     b.Property<DateTime>("CreatedUtc")
                         .HasColumnType("timestamp");
 
@@ -43,14 +38,13 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
 
                     b.Property<DateTime?>("UpdatedUtc")
                         .IsConcurrencyToken()
@@ -60,6 +54,8 @@ namespace Projecto.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("OwnerId");
 
                     b.HasIndex("Slug")
                         .IsUnique();
@@ -73,11 +69,6 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
 
                     b.Property<DateTime>("CreatedUtc")
                         .HasColumnType("timestamp");
@@ -94,20 +85,21 @@ namespace Projecto.Infrastructure.Persistance.Migrations
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<DateTime?>("UpdatedUtc")
-                        .IsConcurrencyToken()
-                        .HasColumnType("timestamp");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PrimaryEmail")
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Projecto.Domain.Entities.Project", b =>
+                {
+                    b.HasOne("Projecto.Domain.Entities.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

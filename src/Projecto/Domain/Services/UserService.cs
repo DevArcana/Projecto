@@ -28,8 +28,6 @@ namespace Projecto.Domain.Services
             {
                 var user = new User()
                 {
-                    CreatedUtc = DateTime.UtcNow,
-                    CreatedBy = "Auth0",
                     PrimaryEmail = email,
                     DisplayName = displayName
                 };
@@ -40,10 +38,12 @@ namespace Projecto.Domain.Services
 
                 return user;
             }
-            catch
+            catch (DbUpdateException exception)
             {
-                return null;
+                
             }
+            
+            return null;
         }
     }
 }

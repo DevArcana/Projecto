@@ -10,8 +10,6 @@ namespace Projecto.Models
         public string? Slug { get; set; }
         public string? Description { get; set; }
         public DateTime CreatedUtc { get; set; }
-        public string? CreatedBy { get; set; }
         public DateTime UpdatedUtc { get; set; }
-        public string? UpdatedBy { get; set; }
     }
 }

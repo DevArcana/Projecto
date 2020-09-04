@@ -28,21 +28,6 @@ namespace Projecto.Infrastructure.Persistance
             return builder.ToString();
         }
 
-        public override int SaveChanges()
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
-        {
-            throw new InvalidOperationException();
-        }
-
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             var erroneouslyUpdated = ChangeTracker.Entries<object>()
@@ -68,10 +53,6 @@ namespace Projecto.Infrastructure.Persistance
                 var createdUtc = entityType.FindProperty(nameof(ICreated.CreatedUtc));
                 createdUtc.IsNullable = false;
                 createdUtc.SetColumnType("timestamp");
-
-                var createdBy = entityType.FindProperty(nameof(ICreated.CreatedBy));
-                createdBy.IsNullable = false;
-                createdBy.SetMaxLength(256);
             }
             
             foreach (var entityType in builder.Model
@@ -82,9 +63,6 @@ namespace Projecto.Infrastructure.Persistance
 
                 updatedUtc.IsConcurrencyToken = true;
                 updatedUtc.SetColumnType("timestamp");
-                
-                var updatedBy = entityType.FindProperty(nameof(IUpdated.UpdatedBy));
-                updatedBy.SetMaxLength(256);
             }
         }
     }

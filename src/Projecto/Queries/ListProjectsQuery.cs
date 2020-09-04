@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Projecto.Infrastructure.Auth;
 using Projecto.Infrastructure.Persistance;
 using Projecto.Models;
@@ -16,17 +20,23 @@ namespace Projecto.Queries
     {
         private readonly UserContext _userContext;
         private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ListProjectsQueryHandler(UserContext userContext, AppDbContext context)
+        public ListProjectsQueryHandler(UserContext userContext, AppDbContext context, IMapper mapper)
         {
             _userContext = userContext;
             _context = context;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<ProjectDto>> Handle(ListProjectsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ProjectDto>> Handle(ListProjectsQuery request, CancellationToken cancellationToken)
         {
-            var user = _userContext.User;
-            throw new System.NotImplementedException();
+            return await _context.Projects
+                .AsNoTracking()
+                .Include(x => x.Owner)
+                .Where(x => x.Owner.Id == _userContext.User!.Id)
+                .ProjectTo<ProjectDto>(_mapper.ConfigurationProvider)
+                .ToListAsync(cancellationToken);
         }
     }
 }
