@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ConfigService } from './core/config/config.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './main/not-found/not-found.component';
+import { AuthDirective } from './core/auth/auth.directive';
+import { LoginComponent } from './main/login/login.component';
+import { SharedModule } from './shared/shared.module';
 
 export const configFactory = (configService: ConfigService) => {
   return () => configService.loadConfig();
@@ -14,12 +17,15 @@ export const configFactory = (configService: ConfigService) => {
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AuthDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     {

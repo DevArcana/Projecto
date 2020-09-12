@@ -1,0 +1,12 @@
+<div>
+    <div *ngIf="auth.loggedIn; else loggedOut">
+        <ng-container *ngIf="auth.userProfile$ | async as user">
+            <p>{{user.given_name}} {{user.family_name}} {{user.nickname}} {{user.email}} <img [src]="user.picture" alt="User Picture" style="height: 32px; display: inline-block;"></p>
+        </ng-container>
+        <button (click)="auth.logout()">Log Out</button>
+    </div>
+
+    <ng-template #loggedOut>
+        <button (click)="auth.login()">Log In</button>
+    </ng-template>
+</div>
