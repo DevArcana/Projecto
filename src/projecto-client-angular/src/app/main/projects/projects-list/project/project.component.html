@@ -1,0 +1,11 @@
+<a [routerLink]="project.slug">
+    <div>
+        {{project.name}}
+        <small>
+            {{project.slug}}
+        </small>
+    </div>
+    <p *ngIf="project.description as description">
+        {{description}}
+    </p>
+</a>
