@@ -2,3 +2,7 @@
 <ul *ngIf="projects$ | async as projects">
     <li *ngFor="let project of projects"><app-project [project]="project"></app-project></li>
 </ul>
+
+<div>
+    <app-create-project-form></app-create-project-form>
+</div>
