@@ -22,7 +22,7 @@ namespace Projecto.Projects.Controllers
         public async Task<IActionResult> Get()
         {
             var result = await _mediator.Send(new ListProjectsQuery());
-            return Ok();
+            return Ok(result);
         }
     }
 }

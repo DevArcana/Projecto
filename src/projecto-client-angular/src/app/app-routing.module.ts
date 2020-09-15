@@ -6,6 +6,11 @@ import { LoginComponent } from './main/login/login.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'projects'
+  },
+  {
     path: 'projects', loadChildren: () => import('./main/projects/projects.module').then(m => m.ProjectsModule),
     canActivate: [AuthGuard]
   },

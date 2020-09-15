@@ -1,4 +1,4 @@
 <div>List of projects:</div>
-<ul *ngIf="projects.getProjects() | async as items">
-    <li *ngFor="let item of items"><app-project [project]="item"></app-project></li>
+<ul *ngIf="projects$ | async as projects">
+    <li *ngFor="let project of projects"><app-project [project]="project"></app-project></li>
 </ul>
