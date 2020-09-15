@@ -1,9 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Projecto.Infrastructure.Services;
+using Projecto.Authentication.Services;
 
-namespace Projecto.Infrastructure.Interfaces
+namespace Projecto.Authentication.Interfaces
 {
     public interface IAuthService
     {

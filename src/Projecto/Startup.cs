@@ -7,10 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Projecto.Domain.Interfaces;
-using Projecto.Domain.Services;
+using Projecto.Authentication.Interfaces;
+using Projecto.Authentication.Services;
 using Projecto.Infrastructure;
-using Projecto.Infrastructure.Auth;
 using Serilog;
 
 namespace Projecto
@@ -57,6 +56,14 @@ namespace Projecto
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseCors(x =>
+                {
+                    // Freedom for all in debug mode
+                    x.AllowAnyOrigin();
+                    x.AllowAnyHeader();
+                    x.AllowAnyMethod();
+                });
             }
 
             app.UseSerilogRequestLogging();
@@ -77,11 +84,6 @@ namespace Projecto
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer("start");
-                }
             });
         }
     }

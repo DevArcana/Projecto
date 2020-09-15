@@ -1,7 +1,7 @@
 ﻿using System;
-using Projecto.Domain.Interfaces;
+using Projecto.Common.Entities.Interfaces;
 
-namespace Projecto.Domain.Entities
+namespace Projecto.Common.Entities
 {
     public abstract class BaseUpdateableEntity : BaseEntity, IUpdated
     {

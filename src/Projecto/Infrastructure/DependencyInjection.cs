@@ -2,11 +2,11 @@
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Projecto.Infrastructure.Auth;
+using Projecto.Authentication;
+using Projecto.Authentication.Interfaces;
+using Projecto.Authentication.Services;
 using Projecto.Infrastructure.Behaviours;
-using Projecto.Infrastructure.Interfaces;
 using Projecto.Infrastructure.Persistance;
-using Projecto.Infrastructure.Services;
 
 namespace Projecto.Infrastructure
 {

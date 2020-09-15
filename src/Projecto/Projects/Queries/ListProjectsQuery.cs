@@ -6,11 +6,11 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Projecto.Infrastructure.Auth;
+using Projecto.Authentication;
 using Projecto.Infrastructure.Persistance;
-using Projecto.Models;
+using Projecto.Projects.Models;
 
-namespace Projecto.Queries
+namespace Projecto.Projects.Queries
 {
     public class ListProjectsQuery : IRequest<IEnumerable<ProjectDto>>
     {

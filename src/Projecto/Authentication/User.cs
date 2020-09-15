@@ -1,4 +1,6 @@
-﻿namespace Projecto.Domain.Entities
+﻿using Projecto.Common.Entities;
+
+namespace Projecto.Authentication
 {
     public class User : BaseEntity
     {

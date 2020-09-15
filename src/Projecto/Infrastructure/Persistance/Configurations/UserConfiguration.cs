@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Projecto.Domain.Entities;
+using Projecto.Authentication;
+using Projecto.Projects;
 
 namespace Projecto.Infrastructure.Persistance.Configurations
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Projecto.Domain.Interfaces
+namespace Projecto.Common.Entities.Interfaces
 {
     public interface IUpdated
     {

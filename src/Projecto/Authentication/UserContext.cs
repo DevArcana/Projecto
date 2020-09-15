@@ -1,10 +1,9 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Projecto.Domain.Entities;
-using Projecto.Domain.Interfaces;
-using Projecto.Infrastructure.Services;
+using Projecto.Authentication.Interfaces;
+using Projecto.Authentication.Services;
 
-namespace Projecto.Infrastructure.Auth
+namespace Projecto.Authentication
 {
     public class UserContext
     {

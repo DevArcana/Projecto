@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Projecto.Authentication;
+using Projecto.Common.Entities;
 
-namespace Projecto.Domain.Entities
+namespace Projecto.Projects
 {
     public class Project : BaseUpdateableEntity
     {

@@ -1,8 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Projecto.Domain.Entities;
 
-namespace Projecto.Domain.Interfaces
+namespace Projecto.Authentication.Interfaces
 {
     public interface IUserService
     {

@@ -6,9 +6,9 @@ using Flurl.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
-using Projecto.Infrastructure.Interfaces;
+using Projecto.Authentication.Interfaces;
 
-namespace Projecto.Infrastructure.Services
+namespace Projecto.Authentication.Services
 {
     public class UserAuthModel
     {

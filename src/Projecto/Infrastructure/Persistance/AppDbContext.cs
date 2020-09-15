@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Projecto.Domain.Entities;
-using Projecto.Domain.Interfaces;
+using Projecto.Authentication;
+using Projecto.Common.Entities.Interfaces;
+using Projecto.Projects;
 
 namespace Projecto.Infrastructure.Persistance
 {

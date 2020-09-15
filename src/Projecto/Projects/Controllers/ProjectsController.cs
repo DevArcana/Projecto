@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Projecto.Queries;
+using Projecto.Projects.Queries;
 
-namespace Projecto.Controllers
+namespace Projecto.Projects.Controllers
 {
     [ApiController]
     [Route("api/projects")]

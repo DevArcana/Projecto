@@ -1,8 +1,7 @@
 ﻿using System;
-using Projecto.Domain.Entities;
 using Projecto.Infrastructure.AutoMapper;
 
-namespace Projecto.Models
+namespace Projecto.Projects.Models
 {
     public class ProjectDto : IMapFrom<Project>
     {

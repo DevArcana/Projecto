@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using Projecto.Domain.Entities;
-using Projecto.Domain.Interfaces;
+using Projecto.Authentication.Interfaces;
 using Projecto.Infrastructure.Persistance;
 
-namespace Projecto.Domain.Services
+namespace Projecto.Authentication.Services
 {
     public class UserService : IUserService
     {
